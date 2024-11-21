@@ -1,6 +1,7 @@
 #from reportlab.lib.pagesizes import letter
 #from reportlab.pdfgen import canvas
 import streamlit as st
+import pyodbc 
 from funcoes import conectar
 import pandas as pd
 from sqlalchemy import create_engine
