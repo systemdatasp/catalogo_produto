@@ -25,7 +25,7 @@ st.set_page_config(
 )
 
 def conectar():
- server   = '172.36.174.15'
+ server   = '186.200.58.154'
  database = 'mantra_mac'
  username = 'softcargo'
  password = 'Sist*sql!@'
@@ -51,7 +51,7 @@ if 'Abertura_Chamados' not in st.session_state:
      st.session_state.Abertura_Chamados = False
   
 params = urllib.parse.quote_plus("DRIVER={SQL Server};"
-                                  "SERVER=172.36.174.15;"
+                                  "SERVER=186.200.58.154;"
                                   "DATABASE=EMPRESAS;"
                                   "UID=softcargo;"
                                   "PWD=Sist*sql!@"
