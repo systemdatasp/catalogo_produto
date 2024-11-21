@@ -1,7 +1,8 @@
 #from reportlab.lib.pagesizes import letter
 #from reportlab.pdfgen import canvas
+import pyodbc
 import streamlit as st
-from funcoes import conectar
+#from funcoes import conectar
 import pandas as pd
 from sqlalchemy import create_engine
 import urllib
@@ -22,6 +23,17 @@ st.set_page_config(
     page_icon=":material/edit_note:",
     layout="wide"
 )
+
+def conectar():
+ server   = '172.36.174.15'
+ database = 'mantra_mac'
+ username = 'softcargo'
+ password = 'Sist*sql!@'
+ conexao  = pyodbc.connect('DRIVER={SQL Server};SERVER='+server+';DATABASE='+database+';UID='+username+';PWD='+ password)
+ conexao1 = pyodbc.connect('DRIVER={SQL Server};SERVER='+server+';DATABASE='+database+';UID='+username+';PWD='+ password)
+ cursor = conexao.cursor()
+ return  cursor
+
 
 # Inicialize o estado de login
 if 'logged_in' not in st.session_state:
