@@ -1,5 +1,5 @@
-from reportlab.lib.pagesizes import letter
-from reportlab.pdfgen import canvas
+#from reportlab.lib.pagesizes import letter
+#from reportlab.pdfgen import canvas
 import streamlit as st
 from funcoes import conectar
 import pandas as pd
@@ -130,22 +130,22 @@ def login():
 def Campomensagem():
     print('Mensagem Digitado ' + st.session_state["mensagem_chamado"])
 
-def criar_pdf_tecnico():
-    c = canvas.Canvas("pdf_com_cabecalho_rodape.pdf", pagesize=letter)
+#def criar_pdf_tecnico():
+#    c = canvas.Canvas("pdf_com_cabecalho_rodape.pdf", pagesize=letter)
     
-    # Adicionar cabeçalho
-    c.setFont("Helvetica-Bold", 14)
-    c.drawString(100, 750, "Cabeçalho do Documento")
+#    # Adicionar cabeçalho
+#    c.setFont("Helvetica-Bold", 14)
+#    c.drawString(100, 750, "Cabeçalho do Documento")
     
     # Adicionar texto principal
-    c.setFont("Helvetica", 12)
-    c.drawString(100, 730, "Este é um exemplo simples de PDF gerado com Python.")
+#    c.setFont("Helvetica", 12)
+#    c.drawString(100, 730, "Este é um exemplo simples de PDF gerado com Python.")
     
     # Adicionar rodapé
-    c.setFont("Helvetica-Oblique", 8)
-    c.drawString(100, 30, "Rodapé do Documento - Página 1")
+#    c.setFont("Helvetica-Oblique", 8)
+#    c.drawString(100, 30, "Rodapé do Documento - Página 1")
     
-    c.save()
+#    c.save()
                 
 
 @st.cache_data
