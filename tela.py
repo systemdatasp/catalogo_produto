@@ -59,7 +59,7 @@ if 'Enviar_Chamado' not in st.session_state:
      st.session_state.Enviar_Chamado = False
   
 params = urllib.parse.quote_plus("DRIVER={SQL Server};"
-                                  "SERVER=172.36.174.15;"
+                                  "SERVER=186.200.58.154;"
                                   "DATABASE=EMPRESAS;"
                                   "UID=softcargo;"
                                   "PWD=Sist*sql!@"
