@@ -68,7 +68,7 @@ params = urllib.parse.quote_plus("DRIVER={SQL Server};"
 conexao = create_engine("mssql+pyodbc:///?odbc_connect={}".format(params))
 
 def conectar():
- server   = '172.36.174.15'
+ server   = '186.200.58.154'
  database = 'mantra_mac'
  username = 'softcargo'
  password = 'Sist*sql!@'
