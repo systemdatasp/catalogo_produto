@@ -2181,9 +2181,7 @@ def main_content():
                                              usuario_responsavel = st.selectbox("**Usuario Responsavel**", options=emails,key = "usuarioresponsavel1")
                                            with coluna2_1:         
                                              mensagem  = st.text_area("**Mensagem**",key="mensagem_chamado")  
-                                           with coluna2_2:         
-                                             enviar_abertura = st.form_submit_button('')                      
-                                       
+                                      
                                       coluna3_1,coluna3_2,coluna3_3 = st.columns([0.10,0.20,0.50])                                            
                                       with coluna3_1:         
                                         enviar_abertura_chamado = st.button('Enviar Mensagem-Abertura')                      
@@ -2572,98 +2570,101 @@ def main_content():
                               st.write(row['Descricao_Tecnica']) 
                                 
                          with col8:
-                            ncm = row['NCM'] if row['NCM'] != 'None' else ''
-                            key_button  = 'btn_'+str(row['id'])
+                              ncm = row['NCM'] if row['NCM'] != 'None' else ''
+                              key_button  = 'btn_'+str(row['id'])
                                            
-                            abrir_detalhes = st.button(f"Visualizar:"+str(row['id']),key= key_button,icon=":material/post_add:")
-                                               
+                              if f'abrir_detalhes_{row["id"]}' not in st.session_state:
+                                 st.session_state[f'abrir_detalhes_{row["id"]}'] = True
+                                 print(st.session_state)
+                 
+                              abrir_detalhes = st.button(f"Visualizar:"+str(row['id']),key= key_button,icon=":material/post_add:")
                          st.markdown("<hr>", unsafe_allow_html=True)
                             
-                     if abrir_detalhes:
-                                    st.subheader('Detalhes Classificação', divider = 'blue')     
-                                    with st.form('form_detalhes_classificacao'):
-                                        colunas1,colunas2,colunas3,colunas4,colunas5,colunas6,colunas7,colunas8 = st.columns([0.29,0.35,0.30,0.40,0.20,0.10,0.40,0.50])
-                                        col1_1,col1_2,col1_3,col1_4,col1_5 = st.columns([0.20,0.20,0.50,0.605,0.60])
-                                        col2_1,col2_2= st.columns([0.50,0.50])
-                                        col3_1,col3_2,col3_3,col3_4= st.columns(4)
-                                        consulta_produtos = consultaprodutos(row['id']) 
+                         if st.session_state[f'abrir_detalhes_{row["id"]}']:
+                            st.subheader('Detalhes Classificação', divider = 'blue')     
+                              #     with st.form('form_detalhes_classificacao'):
+                              #          colunas1,colunas2,colunas3,colunas4,colunas5,colunas6,colunas7,colunas8 = st.columns([0.29,0.35,0.30,0.40,0.20,0.10,0.40,0.50])
+                              #          col1_1,col1_2,col1_3,col1_4,col1_5 = st.columns([0.20,0.20,0.50,0.605,0.60])
+                              #          col2_1,col2_2= st.columns([0.50,0.50])
+                              #          col3_1,col3_2,col3_3,col3_4= st.columns(4)
+                              #          consulta_produtos = consultaprodutos(row['id']) 
                                         
-                                        with colunas1:
-                                            datacatalogo =st.text_input('**Data Catalogo**',value=row['data_classificacao'])
-                                        with colunas2:
-                                            usuario =st.text_input('**Usuario**',value=row['usuario'])
-                                        with colunas3:
-                                            st.text_input('**Código Portal**',value=row['codigo_portal'])
-                                        with colunas4:
-                                            cnpjlista = st.text_input('**CNPJ Responsável:**',value=row['cnpj_raiz'],key="cnpjlista")
-                                        with colunas5:
-                                            pedidos = st.text_input('**Pedido:**',value=row['Pedido'],key="pedidos")
-                                        with colunas6:
-                                            itempedido = st.text_input('**Item:**',value=row['Item'],key="itempedido")
-                                        with colunas7:
-                                            codigoproduto = st.text_input('**Código do produto:**',value=row['Codigo'],key="codigoproduto")
-                                        with colunas8:
-                                            situacaomodalidade = st.text_input('**Modalidade de operação:**',value=row['modalidade'],key="situacaomodalidade",)
-                                        with col1_1:
-                                            ncm_produto = st.text_input('**NCM Cliente:**',value=row['codigo_ncm'],key="ncm_produto")
-                                        with col1_2:
-                                            ncm_classificado = st.text_input('**NCM Mac:**'+' *',value=row['NCM'],key="ncm_classificacao")
-                                        with col1_3:
-                                            unidade_medida = st.text_input('**Unidade de medida estatística:**',key="unidade_medida",value='UNIDADE')
-                                        with col1_4:
-                                            marca = st.text_input('**Marca:**',row['marca'],key="marca")
-                                        with col1_5:
-                                            modelo = st.text_input('**Modelo:**',row['modelo'],key="modelo")
+                              #          with colunas1:
+                              #              datacatalogo =st.text_input('**Data Catalogo**',value=row['data_classificacao'])
+                              #          with colunas2:
+                              #              usuario =st.text_input('**Usuario**',value=row['usuario'])
+                              #          with colunas3:
+                              #              st.text_input('**Código Portal**',value=row['codigo_portal'])
+                              #          with colunas4:
+                              #              cnpjlista = st.text_input('**CNPJ Responsável:**',value=row['cnpj_raiz'],key="cnpjlista")
+                              #          with colunas5:
+                              #              pedidos = st.text_input('**Pedido:**',value=row['Pedido'],key="pedidos")
+                              #          with colunas6:
+                              #              itempedido = st.text_input('**Item:**',value=row['Item'],key="itempedido")
+                              #          with colunas7:
+                              #              codigoproduto = st.text_input('**Código do produto:**',value=row['Codigo'],key="codigoproduto")
+                              #          with colunas8:
+                              #              situacaomodalidade = st.text_input('**Modalidade de operação:**',value=row['modalidade'],key="situacaomodalidade",)
+                              #          with col1_1:
+                              #              ncm_produto = st.text_input('**NCM Cliente:**',value=row['codigo_ncm'],key="ncm_produto")
+                              #          with col1_2:
+                              #              ncm_classificado = st.text_input('**NCM Mac:**'+' *',value=row['NCM'],key="ncm_classificacao")
+                              #          with col1_3:
+                              #              unidade_medida = st.text_input('**Unidade de medida estatística:**',key="unidade_medida",value='UNIDADE')
+                              #          with col1_4:
+                              #              marca = st.text_input('**Marca:**',row['marca'],key="marca")
+                              #          with col1_5:
+                              #              modelo = st.text_input('**Modelo:**',row['modelo'],key="modelo")
                                                 
-                                        with col2_1:
-                                            descricao_ncm = st.text_area('**Denominação Produto:**'+' *',value=row['Descricao_Cliente'],key="descricao_ncm")
-                                        with col2_2:
-                                            descricao_Mac = st.text_area('**Descrição Complementar:**'+' *',value=row['Descricao_Tecnica'],key="descricao_mac")
+                              #          with col2_1:
+                              #              descricao_ncm = st.text_area('**Denominação Produto:**'+' *',value=row['Descricao_Cliente'],key="descricao_ncm")
+                              #          with col2_2:
+                              #              descricao_Mac = st.text_area('**Descrição Complementar:**'+' *',value=row['Descricao_Tecnica'],key="descricao_mac")
                                                             
-                                        atributos = consultar_atributos_ncm_cadastrado_consulta(row['id'])   
+                              #          atributos = consultar_atributos_ncm_cadastrado_consulta(row['id'])   
                                         
-                                        chamado = ''
-                                        if str(row['nrochamado']) == 'None' or str(row['nrochamado']) == '':
-                                           chamado = '0000'
-                                        else:
-                                           chamado = str(row['nrochamado'])
+                              #          chamado = ''
+                              #          if str(row['nrochamado']) == 'None' or str(row['nrochamado']) == '':
+                              #             chamado = '0000'
+                              #          else:
+                              #             chamado = str(row['nrochamado'])
                                         
-                                           print('Chamado ..:'+chamado)
-                                        if chamado != '0000':
+                              #             print('Chamado ..:'+chamado)
+                              #          if chamado != '0000':
                                         
-                                                st.subheader('Histórico Chamados')
-                                                df = listar_chamados(row['nrochamado'])
-                                                col1_1, col1_2, col1_3, col1_4,col1_5,col1_6  = st.columns([0.15,0.50,0.40,0.40,0.90,0.35])
-                                                with col1_1:
-                                                        st.write("**ID Chamado**")
-                                                with col1_2:
-                                                        st.write("**Data**")
-                                                with col1_3:
-                                                        st.write("**Usuario**")
-                                                with col1_4:
-                                                        st.write("**Destinatario**")
-                                                with col1_5:
-                                                        st.markdown("**Resposta**")
-                                                with col1_6:
-                                                        st.markdown("")  # Coluna vazia
-                                                                               
-                                                for i, row in df.iterrows():
-                                                    spacer_1_1,spacer_1_2, spacer_2_1, spacer_3_1, spacer_4_1,spacer_5_1 = st.columns([0.15,0.50,0.40,0.40,0.90,0.35] )
-                                                    with spacer_1_1:
-                                                            st.write(row['Itemchamado'])
-                                                    with spacer_1_2:
-                                                            st.write(row['DataConversa'])
-                                                    with spacer_2_1:
-                                                            st.write(row['UsuarioCriador'])
-                                                    with spacer_3_1:
-                                                            st.write(row['UsuarioResposta'])
-                                                    with spacer_4_1:
-                                                            if row['Resposta'] is not None:
-                                                               st.write(row['Resposta'])                                
-                                                                     
-                                                enviar_chamado = st.form_submit_button('Gerar PDF Tecnico', type='primary')
-                                                if enviar_chamado:
-                                                   iposicao = usuario_criador.find('(')
+                              #                  st.subheader('Histórico Chamados')
+                              #                  df = listar_chamados(row['nrochamado'])
+                              #                  col1_1, col1_2, col1_3, col1_4,col1_5,col1_6  = st.columns([0.15,0.50,0.40,0.40,0.90,0.35])
+                              #                  with col1_1:
+                              #                          st.write("**ID Chamado**")
+                              #                  with col1_2:
+                              #                          st.write("**Data**")
+                              #                  with col1_3:
+                              #                          st.write("**Usuario**")
+                              #                  with col1_4:
+                              #                          st.write("**Destinatario**")
+                              #                  with col1_5:
+                              #                          st.markdown("**Resposta**")
+                              #                  with col1_6:
+                              #                          st.markdown("")  # Coluna vazia
+                                                                                
+                              #                  for i, row in df.iterrows():
+                              #                      spacer_1_1,spacer_1_2, spacer_2_1, spacer_3_1, spacer_4_1,spacer_5_1 = st.columns([0.15,0.50,0.40,0.40,0.90,0.35] )
+                              #                      with spacer_1_1:
+                              #                              st.write(row['Itemchamado'])
+                              #                      with spacer_1_2:
+                              #                              st.write(row['DataConversa'])
+                              #                      with spacer_2_1:
+                              #                              st.write(row['UsuarioCriador'])
+                              #                      with spacer_3_1:
+                              #                              st.write(row['UsuarioResposta'])
+                              #                      with spacer_4_1:
+                              #                              if row['Resposta'] is not None:
+                              #                                 st.write(row['Resposta'])                                
+                                                                      
+                              #                  enviar_chamado = st.form_submit_button('Gerar PDF Tecnico', type='primary')
+                              #                  if enviar_chamado:
+                              #                     iposicao = usuario_criador.find('(')
                                         
           if choice == "Importar Arquivo":
              st.markdown("""

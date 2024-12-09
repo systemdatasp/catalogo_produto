@@ -1,4 +1,4 @@
-import pyodbc 
+import pyodbc
 
 def conectar():
  server   = '172.36.174.15'
